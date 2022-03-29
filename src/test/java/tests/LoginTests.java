@@ -50,4 +50,8 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isLoginRegistrationSuccess());
     }
 
+    @Test
+    public void LoginNegativeTestWrongPassword() {
+        User user = new User().withEmail().;
+    }
 }
