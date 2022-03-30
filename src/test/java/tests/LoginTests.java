@@ -1,9 +1,12 @@
 package tests;
 
 
+
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import  models.User;
 
 
 public class LoginTests extends TestBase {
@@ -50,8 +53,15 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isLoginRegistrationSuccess());
     }
 
+
     @Test
-    public void LoginNegativeTestWrongPassword() {
-        User user = new User().withEmail().;
+    public void loginNegativeTestWrongPassword(){
+        User user = new User().withEmail("noa@gmail.com").withPassword("Nnoa");
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistartionForm(user);
+        app.getHelperUser().submitLogin();
+        Assert.assertFalse(app.getHelperUser().isLoginRegistrationSuccess());
+        Assert.assertTrue(app.getHelperUser().isAlertDisplayed());
+        Assert.assertTrue(app.getHelperUser().isErrorWrongFormat());
     }
 }
